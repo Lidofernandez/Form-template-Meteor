@@ -1,0 +1,47 @@
+<head>
+	<title>People</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="outer">
+		<div class="logo"></div>
+		<h1 class="title">People</h1>
+		
+		{{> people}}
+
+	</div>
+</body>
+
+<template name="people">
+	<ol class="leaderboard">
+		{{#each people}}
+		<li>
+			{{firstName}} {{lastName}} -- Age: {{age}}
+		</li>
+		{{/each}}
+	</ol>
+	
+	<h3>Add a person</h3>
+	{{> PersonInsert}}
+</template>
+
+<template name="PersonInsert">
+
+	{{!-- Short Form --}}
+	{{!-- 
+	{{> quickForm collection="People" id="insertPersonForm" type="insert"}}
+	--}}
+	
+	{{!-- Longer Form --}}
+	{{#autoForm collection="People" id="insertBookForm" type="insert"}}
+	<fieldset>
+		<legend>Add a Person</legend>
+		{{> afQuickField name='firstName'}}
+		{{> afQuickField name='lastName'}}
+		{{> afQuickField name='age'}}
+	</fieldset>
+	<button type="submit" class="btn btn-primary">Add</button>
+	{{/autoForm}}
+</template>
